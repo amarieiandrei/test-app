@@ -27,7 +27,7 @@ export class ListingsService {
 
   // Get all listings
   getListings(): Observable<Listing[]> {
-    return this.http.get<Listing[]>(this.BASE_URL);
+    return this.http.get<Listing[]>(`${this.BASE_URL}?action=listings`);
   }
 
   // Add a new listing using token

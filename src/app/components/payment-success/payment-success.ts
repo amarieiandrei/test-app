@@ -20,24 +20,24 @@ export class PaymentSuccessComponent {
   ) {}
 
   ngOnInit(): void {
-    const token = this.route.snapshot.queryParamMap.get('token');
+    const sessionId = this.route.snapshot.queryParamMap.get('sessionId');
 
-    if (!token) {
+    if (!sessionId) {
       this.error = true;
       this.loading = false;
       return;
     }
 
-    this.fetchToken(token);
+    this.fetchToken(sessionId);
   }
 
-  fetchToken(token: string) {
-    this.listingsService.validateToken(token).subscribe({
+  fetchToken(sessionId: string) {
+    this.listingsService.getTokenBySession(sessionId).subscribe({
       next: (res: any) => {
-        if (res?.valid) {
+        if (res?.valid && res?.token) {
           // redirect către pagina de adăugare anunț
           this.router.navigate(['/add-listing'], {
-            queryParams: { token }
+            queryParams: { token: res.token }
           });
         } else {
           this.error = true;

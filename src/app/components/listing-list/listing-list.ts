@@ -39,6 +39,6 @@ export class ListingListComponent {
 
   goToStripe() {
     // redirect către Stripe Payment Link
-    window.location.href = environment.stripePaymentLink;
+    window.location.href = environment.stripePaymentLinkTest;
   }
 }

@@ -20,9 +20,9 @@ export class ListingsService {
 
   constructor(private http: HttpClient) {}
 
-  // Validate token
-  validateToken(token: string): Observable<{ valid: boolean }> {
-    return this.http.get<{ valid: boolean }>(`${this.BASE_URL}?action=validateToken&token=${token}`);
+  // Get token by session ID
+  getTokenBySession(sessionId: string) {
+    return this.http.get<{ valid: boolean, token: string }>(`${this.BASE_URL}?action=getTokenBySession&sessionId=${sessionId}`);
   }
 
   // Get all listings

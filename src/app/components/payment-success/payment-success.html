@@ -1,0 +1,11 @@
+<div class="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4">
+  <div *ngIf="loading" class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md text-center animate-pulse">
+    <h2 class="text-2xl font-bold mb-2 text-gray-700">Se confirmă plata...</h2>
+    <p class="text-gray-500">Te rugăm să aștepți câteva secunde.</p>
+  </div>
+
+  <div *ngIf="error" class="bg-red-100 shadow-lg rounded-lg p-8 w-full max-w-md text-center">
+    <h2 class="text-2xl font-bold mb-2 text-red-600">Oops 😕</h2>
+    <p class="text-red-500">Nu am putut confirma plata. Te rugăm să ne contactezi.</p>
+  </div>
+</div>

@@ -20,6 +20,11 @@ export class ListingsService {
 
   constructor(private http: HttpClient) {}
 
+  // Validate token
+  validateToken(token: string): Observable<{ valid: boolean }> {
+    return this.http.get<{ valid: boolean }>(`${this.BASE_URL}?action=validateToken&token=${token}`);
+  }
+
   // Get all listings
   getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>(this.BASE_URL);
@@ -30,27 +35,4 @@ export class ListingsService {
     const payload = { ...listing, token };
     return this.http.post(`${this.BASE_URL}`, payload);
   }
-
-  // Get latest token (from webhook)
-  getLatestToken() {
-    return this.http.get<{ token: string }>(`${this.BASE_URL}?action=getLatestToken`);
-  }
-  
-  // getListings(): Observable<Listing[]> {
-  //   return this.http.get<Listing[]>(this.BASE_URL);
-  // }
-
-  // addListing(listing: Listing) {
-  //   const params = new URLSearchParams({
-  //     id: listing.id,
-  //     title: listing.title,
-  //     description: listing.description,
-  //     price: listing.price,
-  //     contact: listing.contact,
-  //     createdAt: listing.createdAt,
-  //     secretCode: listing.secretCode || ''
-  //   });
-
-  //   return this.http.get(`${this.BASE_URL}?${params.toString()}`);
-  // }
 }

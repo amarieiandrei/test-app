@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListingsService } from '../../services/listings.service';
 import { CommonModule } from '@angular/common';
 
@@ -15,25 +15,34 @@ export class PaymentSuccessComponent {
 
   constructor(
     private listingsService: ListingsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.fetchToken();
+    const token = this.route.snapshot.queryParamMap.get('token');
+
+    if (!token) {
+      this.error = true;
+      this.loading = false;
+      return;
+    }
+
+    this.fetchToken(token);
   }
 
-  fetchToken() {
-    this.listingsService.getLatestToken().subscribe({
+  fetchToken(token: string) {
+    this.listingsService.validateToken(token).subscribe({
       next: (res: any) => {
-        if (res?.token) {
+        if (res?.valid) {
           // redirect către pagina de adăugare anunț
           this.router.navigate(['/add-listing'], {
-            queryParams: { token: res.token }
+            queryParams: { token }
           });
         } else {
           this.error = true;
-          this.loading = false;
         }
+        this.loading = false;
       },
       error: () => {
         this.error = true;

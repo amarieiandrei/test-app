@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ListingsService } from '../../services/listings.service';
+import { TicketsService } from '../../services/tickets.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ export class PaymentSuccessComponent {
   error = false;
 
   constructor(
-    private listingsService: ListingsService,
+    private ticketsService: TicketsService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -32,11 +32,11 @@ export class PaymentSuccessComponent {
   }
 
   fetchToken(sessionId: string) {
-    this.listingsService.getTokenBySession(sessionId).subscribe({
+    this.ticketsService.getTokenBySession(sessionId).subscribe({
       next: (res: any) => {
         if (res?.valid && res?.token) {
           // redirect către pagina de adăugare anunț
-          this.router.navigate(['/add-listing'], {
+          this.router.navigate(['/adauga-bilet'], {
             queryParams: { token: res.token }
           });
         } else {

@@ -1,0 +1,16 @@
+<div class="max-w-md mx-auto p-4 bg-gray-100 rounded shadow-md">
+    <h2 class="text-xl font-bold mb-4">Add Ticket</h2>
+    <form (ngSubmit)="submit()">
+        <input type="text" [(ngModel)]="title" name="title" placeholder="Title" required 
+            class="w-full p-2 mb-2 border rounded"/>
+        <textarea [(ngModel)]="description" name="description" placeholder="Description" required 
+            class="w-full p-2 mb-2 border rounded"></textarea>
+        <input type="text" [(ngModel)]="price" name="price" placeholder="Price"
+            class="w-full p-2 mb-2 border rounded"/>
+        <input type="text" [(ngModel)]="contact" name="contact" placeholder="Contact (email/phone)" required
+            class="w-full p-2 mb-2 border rounded"/>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            Submit
+        </button>
+    </form>
+</div>

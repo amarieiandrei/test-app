@@ -1,19 +1,23 @@
 import { Routes } from '@angular/router';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success';
-import { ListingListComponent } from './components/listing-list/listing-list';
-import { AddListingFormComponent } from './components/add-listing-form/add-listing-form';
+import { TicketListComponent } from './components/ticket-list/ticket-list';
+import { AddTicketFormComponent } from './components/add-ticket-form/add-ticket-form';
 
 export const routes: Routes = [
     {
-    path: '',
-    component: ListingListComponent
+    path: 'bilete',
+    component: TicketListComponent
   },
   {
-    path: 'add-listing',
-    loadComponent: () => import('./components/add-listing-form/add-listing-form').then(m => m.AddListingFormComponent)
+    path: 'adauga-bilet',
+    loadComponent: () => import('./components/add-ticket-form/add-ticket-form').then(m => m.AddTicketFormComponent)
   },
   {
     path: 'payment-success',
     loadComponent: () => import('./components/payment-success/payment-success').then(m => m.PaymentSuccessComponent)
-  }
+  },
+  {
+        path: '**',
+        redirectTo: 'bilete'
+    }
 ];

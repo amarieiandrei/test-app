@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export interface Listing {
+export interface Ticket {
   id: string;
   title: string;
   description: string;
@@ -15,7 +15,7 @@ export interface Listing {
 @Injectable({
   providedIn: 'root',
 })
-export class ListingsService {
+export class TicketsService {
   private BASE_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
@@ -25,14 +25,14 @@ export class ListingsService {
     return this.http.get<{ valid: boolean, token: string }>(`${this.BASE_URL}?action=getTokenBySession&sessionId=${sessionId}`);
   }
 
-  // Get all listings
-  getListings(): Observable<Listing[]> {
-    return this.http.get<Listing[]>(`${this.BASE_URL}?action=getListings`);
+  // Get all tickets
+  getTickets(): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.BASE_URL}?action=getTickets`);
   }
 
-  // Add a new listing using token
-  addListing(listing: Listing, token: string): Observable<any> {
-    const payload = { ...listing, token };
+  // Add a new ticket using token
+  addTicket(ticket: Ticket, token: string): Observable<any> {
+    const payload = { ...ticket, token };
     return this.http.post(`${this.BASE_URL}`, payload);
   }
 }

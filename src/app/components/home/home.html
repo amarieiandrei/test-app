@@ -1,4 +1,4 @@
-<section
+<section 
   class="
     min-h-screen w-full
     bg-[url('/assets/backgrounds/bg-mobile.jpg')]
@@ -14,11 +14,33 @@
       Nibiru Bilete
     </h1>
 
-    <p class="mt-4 text-white/80 text-base md:text-lg">
+    <p class="my-4 text-white/80 text-base md:text-lg">
       Mobile-first experience, beautifully designed.
     </p>
 
-    <button hlmBtn variant="destructive">Test Button</button>
+    <!-- theme-toggle.component.html -->
+    <button hlmBtn (click)="toggleTheme()">
+      {{ themeService.isDarkMode() ? 'Switch to Light' : 'Switch to Dark' }}
+    </button>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+      <button hlmBtn variant="default">Test Button</button>
+      <button hlmBtn variant="destructive">Test Button-2</button>
+      <button hlmBtn variant="outline">Test Button-3</button>
+      <button hlmBtn variant="secondary">Test Button-4</button>
+      <button hlmBtn variant="ghost">Test Button-5</button>
+      <button hlmBtn variant="link">Test Button-6</button>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+      <input hlmInput type="email" placeholder="Test"/>
+      <input hlmInput type="email" placeholder="Test-1"/>
+      <input hlmInput type="email" placeholder="Test-2"/>
+      <input hlmInput type="email" placeholder="Test-3"/>
+      <input hlmInput type="email" placeholder="Test-4"/>
+      <input hlmInput type="email" placeholder="Test-5"/>
+    </div>
 
   </div>
 
